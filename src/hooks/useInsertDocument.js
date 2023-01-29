@@ -23,8 +23,7 @@ const insertReducer = (state, action) => {
 export const useInsertDocument = (docCollection) => {
     const [response, dispatch] = useReducer(insertReducer, initialState);
 
-    // const [cancelled, setCancelled] = useState(false);
-    let cancelled = false;
+    const [cancelled, setCancelled] = useState(false);
 
     const checkCancelBeforeDispatch = (action) => {
         if (!cancelled) {
@@ -57,7 +56,7 @@ export const useInsertDocument = (docCollection) => {
     }
 
     useEffect(() => {
-        return () => cancelled = true;
+        return () => setCancelled(true);
     }, []);
 
     return { insertDocument, response };
